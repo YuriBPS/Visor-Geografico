@@ -13,7 +13,7 @@ var secto1 = L.geoJSON(null, {
     }
 }).addTo(map);
 
-var CUSAF = L.geoJSON(null, {
+var cusaf = L.geoJSON(null, {
     style: {
         color: "#0078ff",
         weight: 2,
@@ -21,7 +21,7 @@ var CUSAF = L.geoJSON(null, {
     }
 }).addTo(map);
 
-var AREAINICIO = L.geoJSON(null, {
+var areainicio = L.geoJSON(null, {
     style: {
         color: "#00ff78",
         weight: 2,
@@ -39,13 +39,13 @@ fetch('data/secto1.geojson')
 fetch('data/cusaf.geojson')
     .then(response => response.json())
     .then(data => {
-        CUSAF.addData(data);
+        cusaf.addData(data);
     });
 
 fetch('data/areainicio.geojson')
     .then(response => response.json())
     .then(data => {
-        AREAINICIO.addData(data);
+        areainicio.addData(data);
     });
 
 //agregar controlador de capas
@@ -54,9 +54,9 @@ var baseMaps = {
 };
 
 var overlayMaps = {
-    "Areas Potenciales CUSAF": CUSAF,
+    "Areas Potenciales CUSAF": cusaf,
     "Áreas de Inicio Aprobados": secto1,
-    "Área de Inicio SM": AREAINICIO
+    "Área de Inicio SM": areainicio
 };
 
 L.control.layers(baseMaps, overlayMaps).addTo(map);
